@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="da">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DR Musikudgivelser</title>
+  <link rel="stylesheet" href="style.css">
+  <script defer src="https://cdn.jsdelivr.net/npm/vue@3.5.22/dist/vue.global.prod.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/axios@1.16.0/dist/axios.min.js"></script>
+  <script defer src="config.js"></script>
+  <script defer src="app.js"></script>
+</head>
+<body>
+  <main>
+    <h1>Musikudgivelser</h1>
+    <div id="app">
+      <p v-if="loading" role="status">Henter musikudgivelser…</p>
+      <p v-else-if="error" role="alert">{{ error }}</p>
+      <p v-else-if="records.length === 0" role="status">Der er endnu ingen musikudgivelser.</p>
+      <div v-else class="table-scroll">
+        <table aria-label="Musikudgivelser">
+          <thead>
+            <tr>
+              <th scope="col">Titel</th>
+              <th scope="col">Kunstner</th>
+              <th scope="col">Varighed (sekunder)</th>
+              <th scope="col">Udgivelsesår</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr v-for="record in records" :key="record.id" :data-record-id="record.id">
+              <td>{{ record.title }}</td>
+              <td>{{ record.artist }}</td>
+              <td>{{ record.duration }}</td>
+              <td>{{ record.publicationYear }}</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+</body>
+</html>
