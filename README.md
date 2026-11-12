@@ -2,6 +2,8 @@
 
 Åbn denne mappe i VS Code. Start API'et, installér udvidelsen **Live Server**, og vælg **Open with Live Server** på `index.html`. Åbn [http://localhost:5500](http://localhost:5500). Vue og Axios indlæses fra jsDelivr, så browseren skal have internetadgang.
 
+Skriv en del af en titel eller et kunstnernavn, og vælg **Søg**. Med begge felter udfyldt skal begge matche. **Nulstil** rydder felterne og henter alle udgivelser igen.
+
 API'ets baseadresse står i `config.js`. Brug den lokale adresse til udvikling og API'ets HTTPS-adresse i den kopi, du publicerer til Azure.
 
 ## Azure via FTPS

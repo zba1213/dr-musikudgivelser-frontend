@@ -14,9 +14,25 @@
   <main>
     <h1>Musikudgivelser</h1>
     <div id="app">
+      <form @submit.prevent="loadRecords">
+        <fieldset :disabled="loading">
+          <div>
+            <label for="title">Titel</label>
+            <input id="title" v-model="title" type="search">
+          </div>
+          <div>
+            <label for="artist">Kunstner</label>
+            <input id="artist" v-model="artist" type="search">
+          </div>
+          <button type="submit">Søg</button>
+          <button type="button" @click="resetSearch">Nulstil</button>
+        </fieldset>
+      </form>
       <p v-if="loading" role="status">Henter musikudgivelser…</p>
       <p v-else-if="error" role="alert">{{ error }}</p>
-      <p v-else-if="records.length === 0" role="status">Der er endnu ingen musikudgivelser.</p>
+      <p v-else-if="records.length === 0" role="status">
+        {{ searched ? "Ingen udgivelser matcher din søgning" : "Der er endnu ingen musikudgivelser." }}
+      </p>
       <div v-else class="table-scroll">
         <table aria-label="Musikudgivelser">
           <thead>
